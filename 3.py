@@ -1,26 +1,30 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from math import sin, cos, pi
 
 # Определите угол поворота
-a = 5
+c = 10 * 4.5
+
+c = pi * c / 180
 # Базисные вектора
 basis_vector1 = np.array([1, 0])
 basis_vector2 = np.array([0, 1])
 
 # Матрица линейного оператора для отражения относительно прямой y = ax
-reflection_matrix = np.array([[(1 - a ** 2) / (1 + a ** 2), 2 * a / (1 + a ** 2)],
-                              [2 * a / (1 + a ** 2), (a ** 2 - 1) / (1 + a ** 2)]])
+transformation_matrix = np.array([[cos(c), sin(c)],
+                                  [-sin(c), cos(c)]])
 
-# Прямая y = ax
-x_line = np.arange(-10, 11, 1)
-y_line = a * x_line
-
-x_line_1 = np.arange(-10, 11, 1)
-y_line_1 = -1/a * x_line
+# # Прямая y = ax
+# x_line = np.arange(-10, 11, 1)
+# y_line = - x_line
+#
+# # Прямая y = ax
+# x_line_2 = np.arange(-10, 11, 1)
+# y_line_2 = c * x_line
 
 # Применение унитарного оператора к базисным векторам
-rotated_basis_vector1 = basis_vector1.dot(reflection_matrix)
-rotated_basis_vector2 = basis_vector2.dot(reflection_matrix)
+rotated_basis_vector1 = basis_vector1.dot(transformation_matrix)
+rotated_basis_vector2 = basis_vector2.dot(transformation_matrix)
 
 # Генерация сетки точек в исходной плоскости с шагом 1 и целыми координатами
 x = np.arange(-5, 6, 1)
@@ -29,7 +33,7 @@ X, Y = np.meshgrid(x, y)
 points = np.vstack((X.flatten(), Y.flatten())).T
 
 # Применение унитарного оператора (поворота) к каждой точке
-rotated_points = points.dot(reflection_matrix)
+rotated_points = points.dot(transformation_matrix)
 
 # Разделение исходных и преобразованных точек
 x1, y1 = points[:, 0], points[:, 1]
@@ -47,8 +51,8 @@ plt.quiver(0, 0, basis_vector1[0], basis_vector1[1], angles='xy', scale_units='x
            label='Базисный вектор (1, 0)')
 plt.quiver(0, 0, basis_vector2[0], basis_vector2[1], angles='xy', scale_units='xy', scale=1, color='g',
            label='Базисный вектор (0, 1)')
-plt.plot(x_line, y_line, color='gray', linestyle='--', label=f'Прямая y = {a}x')
-plt.plot(x_line_1, y_line_1, color='gray', linestyle='--', label=f'Прямая y = -{1/a}x')
+# plt.plot(x_line, y_line, color='gray', linestyle='--', label=f'Прямая y = {c}x')
+# plt.plot(x_line_2, y_line_2, color='gray', linestyle='--', label=f'Прямая y = {c}x')
 plt.scatter(x1, y1, c=color_array, cmap='viridis')
 plt.xlim(-10, 10)
 plt.ylim(-10, 10)
@@ -58,13 +62,13 @@ plt.grid(color='gray', linestyle='--', linewidth=0.5)
 # plt.legend()
 
 plt.subplot(122)
-plt.title('Плоскость после отражения')
+plt.title('Плоскость после поворота')
 plt.quiver(0, 0, rotated_basis_vector1[0], rotated_basis_vector1[1], angles='xy', scale_units='xy', scale=1, color='c',
            label='Отраженный базисный вектор (1, 0)')
 plt.quiver(0, 0, rotated_basis_vector2[0], rotated_basis_vector2[1], angles='xy', scale_units='xy', scale=1, color='g',
            label='Отраженный базисный вектор (0, 1)')
-plt.plot(x_line, y_line, color='gray', linestyle='--', label=f'Прямая y = {a}x')
-plt.plot(x_line_1, y_line_1, color='gray', linestyle='--', label=f'Прямая y = -{1/a}x')
+# plt.plot(x_line, y_line, color='gray', linestyle='--', label=f'Прямая y = {c}x')
+# plt.plot(x_line_2, y_line_2, color='gray', linestyle='--', label=f'Прямая y = {c}x')
 plt.scatter(x2, y2, c=color_array, cmap='viridis')
 plt.xlim(-10, 10)
 plt.ylim(-10, 10)
