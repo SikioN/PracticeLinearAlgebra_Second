@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from math import sin, cos, pi
 
 # Определите угол поворота
-c = 10 * 4.5
+c = 10 * 1
 
 c = pi * c / 180
 # Базисные вектора
