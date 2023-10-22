@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 from math import sin, cos, pi, sqrt
 
 # Определите угол поворота
-a = 1
-b = 5
+a = 2
+b = 2
 # d = 0
 
 # Базисные вектора
@@ -13,8 +13,8 @@ basis_vector2 = np.array([0, 1])
 
 # Матрица линейного оператора для отражения относительно прямой y = ax
 transformation_matrix = np.array(
-    [[1 / abs(b - a), a / abs(b - a)],
-     [1 / abs(b - a), b / abs(b - a)]])
+    [[1 / sqrt(1 + a ** 2), a / sqrt(1 + a ** 2)],
+     [1 / sqrt(1 + b ** 2), b / sqrt(1 + b ** 2)]])
 
 # reflection_matrix = np.array([[(1 - a ** 2) / (1 + a ** 2), 2 * a / (1 + a ** 2)],
 #                               [2 * a / (1 + a ** 2), (a ** 2 - 1) / (1 + a ** 2)]])
@@ -58,7 +58,7 @@ plt.title('Исходная плоскость')
 plt.quiver(0, 0, basis_vector1[0], basis_vector1[1], angles='xy', scale_units='xy', scale=1, color='c')
 plt.quiver(0, 0, basis_vector2[0], basis_vector2[1], angles='xy', scale_units='xy', scale=1, color='g')
 plt.plot(x_line, y_line, color='mediumaquamarine', linestyle='--', label=f'Прямая y = ax')
-plt.plot(x_line_2, y_line_2, color='mediumpurple', linestyle='--', label=f'Прямая y = bx')
+plt.plot(x_line_2, y_line_2, color='green', linestyle='--', label=f'Прямая y = bx')
 plt.scatter(x1, y1, c=color_array, cmap='viridis')
 plt.xlim(-10, 10)
 plt.ylim(-10, 10)
@@ -72,7 +72,7 @@ plt.title('Плоскость после поворота')
 plt.quiver(0, 0, rotated_basis_vector1[0], rotated_basis_vector1[1], angles='xy', scale_units='xy', scale=1, color='c')
 plt.quiver(0, 0, rotated_basis_vector2[0], rotated_basis_vector2[1], angles='xy', scale_units='xy', scale=1, color='g')
 plt.plot(x_line, y_line, color='mediumaquamarine', linestyle='--', label=f'Прямая y = ax')
-plt.plot(x_line_2, y_line_2, color='mediumpurple', linestyle='--', label=f'Прямая y = bx')
+plt.plot(x_line_2, y_line_2, color='green', linestyle='--', label=f'Прямая y = bx')
 plt.scatter(x2, y2, c=color_array, cmap='viridis')
 plt.xlim(-10, 10)
 plt.ylim(-10, 10)
