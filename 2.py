@@ -3,14 +3,14 @@ import matplotlib.pyplot as plt
 from math import sqrt
 
 # Определите угол поворота
-с = 1
+b = 1
 # Базисные вектора
 basis_vector1 = np.array([1, 0])
 basis_vector2 = np.array([0, 1])
 
 # Матрица линейного оператора для отражения относительно прямой y = ax
-transformation_matrix = np.array([[1 / sqrt(1 + с ** 2), с / sqrt(1 + с ** 2)],
-                                  [1 / sqrt(1 + с ** 2), с / sqrt(1 + с ** 2)]])
+transformation_matrix = np.array([[1 / sqrt(1 + b ** 2), b / sqrt(1 + b ** 2)],
+                                  [1 / sqrt(1 + b ** 2), b / sqrt(1 + b ** 2)]])
 
 # # Прямая y = ax
 # x_line = np.arange(-10, 11, 1)

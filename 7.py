@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from math import sin, cos, pi, sqrt
 
 # Определите угол поворота
-a = 1
+a = 2
 b = 5
 # d = 0
 
@@ -12,10 +12,16 @@ basis_vector1 = np.array([1, 0])
 basis_vector2 = np.array([0, 1])
 
 # Матрица линейного оператора для отражения относительно прямой y = ax
-transformation_matrix = np.array(
-    [[1 / abs(b - a), a / abs(b - a)],
-     [1 / abs(b - a), b / abs(b - a)]])
+# transformation_matrix = np.array(
+#     [[(-b * sqrt(1 + a ** 2)) / (a - b), sqrt(1 + a ** 2) / (a - b)],
+#      [(a * sqrt(1 + b ** 2)) / (a - b), -sqrt(1 + b ** 2) / (a - b)]])
 
+transformation_matrix = np.array(
+    [[1 / (b - a), a / (b - a)],
+     [1 / (b - a), b / (b - a)]])
+transformation_matrix = np.linalg.inv(transformation_matrix)
+
+print(transformation_matrix)
 # reflection_matrix = np.array([[(1 - a ** 2) / (1 + a ** 2), 2 * a / (1 + a ** 2)],
 #                               [2 * a / (1 + a ** 2), (a ** 2 - 1) / (1 + a ** 2)]])
 # rotate_matrix = np.array([[cos(d), sin(d)],
@@ -35,8 +41,8 @@ rotated_basis_vector1 = basis_vector1.dot(transformation_matrix)
 rotated_basis_vector2 = basis_vector2.dot(transformation_matrix)
 
 # Генерация сетки точек в исходной плоскости с шагом 1 и целыми координатами
-x = np.arange(-3, 4, 1)
-y = np.arange(-3, 4, 1)
+x = np.arange(-5, 6, 1)
+y = np.arange(-5, 6, 1)
 X, Y = np.meshgrid(x, y)
 points = np.vstack((X.flatten(), Y.flatten())).T
 
