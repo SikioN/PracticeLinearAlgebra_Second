@@ -33,7 +33,7 @@ ax.add_collection3d(Poly3DCollection(face, facecolors='cyan', linewidths=1, edge
 # Установка пределов для осей x, y и z
 ax.set_xlim([-1, 1])
 ax.set_ylim([-1, 1])
-ax.set_zlim([0, 2.5])
+ax.set_zlim([0, 1.5])
 
 # Настройка меток осей
 ax.set_xlabel('X')
